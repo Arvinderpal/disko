@@ -1,0 +1,33 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmclusters
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmclusters/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmclusters/status
+  verbs:
+  - get
+  - patch
+  - update

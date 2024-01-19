@@ -1,0 +1,6 @@
+apiVersion: storage.storage.domain/v1
+kind: LVMCluster
+metadata:
+  name: lvmcluster-sample
+spec:
+  # TODO(user): Add fields here
