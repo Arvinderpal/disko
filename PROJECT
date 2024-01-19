@@ -1,0 +1,6 @@
+domain: storage.domain
+layout:
+- go.kubebuilder.io/v3
+projectName: disko
+repo: storage.domain/disko
+version: "3"
