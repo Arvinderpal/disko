@@ -5,20 +5,20 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: lvmclusters.storage.storage.domain
+  name: lvmnodes.storage.storage.domain
 spec:
   group: storage.storage.domain
   names:
-    kind: LVMCluster
-    listKind: LVMClusterList
-    plural: lvmclusters
-    singular: lvmcluster
+    kind: LVMNode
+    listKind: LVMNodeList
+    plural: lvmnodes
+    singular: lvmnode
   scope: Namespaced
   versions:
   - name: v1
     schema:
       openAPIV3Schema:
-        description: LVMCluster is the Schema for the lvmclusters API
+        description: LVMNode is the Schema for the lvmnodes API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -33,15 +33,10 @@ spec:
           metadata:
             type: object
           spec:
-            description: LVMClusterSpec defines the desired state of LVMCluster
-            properties:
-              paused:
-                description: Paused can be used to prevent controllers from processing
-                  the LVMCluster and all its associated objects.
-                type: boolean
+            description: LVMNodeSpec defines the desired state of LVMNode
             type: object
           status:
-            description: LVMClusterStatus defines the observed state of LVMCluster
+            description: LVMNodeStatus defines the observed state of LVMNode
             properties:
               conditions:
                 description: Conditions defines current service state of the cluster.

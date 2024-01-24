@@ -21,15 +21,12 @@ import (
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
-// LVMClusterSpec defines the desired state of LVMCluster
-type LVMClusterSpec struct {
-	// Paused can be used to prevent controllers from processing the LVMCluster and all its associated objects.
-	// +optional
-	Paused bool `json:"paused,omitempty"`
+// LVMNodeSpec defines the desired state of LVMNode
+type LVMNodeSpec struct {
 }
 
-// LVMClusterStatus defines the observed state of LVMCluster
-type LVMClusterStatus struct {
+// LVMNodeStatus defines the observed state of LVMNode
+type LVMNodeStatus struct {
 	// The generation observed by the LVMCluster controller.
 	// +optional
 	ObservedGeneration int64 `json:"observedGeneration,omitempty"`
@@ -42,34 +39,34 @@ type LVMClusterStatus struct {
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// LVMCluster is the Schema for the lvmclusters API
-type LVMCluster struct {
+// LVMNode is the Schema for the lvmnodes API
+type LVMNode struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   LVMClusterSpec   `json:"spec,omitempty"`
-	Status LVMClusterStatus `json:"status,omitempty"`
+	Spec   LVMNodeSpec   `json:"spec,omitempty"`
+	Status LVMNodeStatus `json:"status,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 
-// LVMClusterList contains a list of LVMCluster
-type LVMClusterList struct {
+// LVMNodeList contains a list of LVMNode
+type LVMNodeList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []LVMCluster `json:"items"`
+	Items           []LVMNode `json:"items"`
 }
 
 func init() {
-	SchemeBuilder.Register(&LVMCluster{}, &LVMClusterList{})
+	SchemeBuilder.Register(&LVMNode{}, &LVMNodeList{})
 }
 
 // GetConditions returns the set of conditions for this object.
-func (c *LVMCluster) GetConditions() clusterv1.Conditions {
+func (c *LVMNode) GetConditions() clusterv1.Conditions {
 	return c.Status.Conditions
 }
 
 // SetConditions sets the conditions on this object.
-func (c *LVMCluster) SetConditions(conditions clusterv1.Conditions) {
+func (c *LVMNode) SetConditions(conditions clusterv1.Conditions) {
 	c.Status.Conditions = conditions
 }

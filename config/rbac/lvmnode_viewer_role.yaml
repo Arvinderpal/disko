@@ -1,0 +1,20 @@
+# permissions for end users to view lvmnodes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: lvmnode-viewer-role
+rules:
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmnodes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmnodes/status
+  verbs:
+  - get

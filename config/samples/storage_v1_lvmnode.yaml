@@ -1,0 +1,6 @@
+apiVersion: storage.storage.domain/v1
+kind: LVMNode
+metadata:
+  name: lvmnode-sample
+spec:
+  # TODO(user): Add fields here

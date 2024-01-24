@@ -31,3 +31,29 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmnodes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmnodes/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmnodes/status
+  verbs:
+  - get
+  - patch
+  - update

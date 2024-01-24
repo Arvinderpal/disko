@@ -1,0 +1,24 @@
+# permissions for end users to edit lvmnodes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: lvmnode-editor-role
+rules:
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmnodes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - storage.storage.domain
+  resources:
+  - lvmnodes/status
+  verbs:
+  - get
