@@ -17,16 +17,42 @@ limitations under the License.
 package v1
 
 import (
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
+type Disk struct {
+	// Name is the name of the disk.
+	// +kubebuilder:validation:MinLength=1
+	Name string `json:"name"`
+	// IsPartition indicates whether the disk is a partition.
+	// +optional
+	IsPartition bool `json:"isPartition,omitempty"`
+}
+
 // LVMNodeSpec defines the desired state of LVMNode
 type LVMNodeSpec struct {
+	// LVMClusterName is the name of the LVMCluster this object belongs to.
+	// +kubebuilder:validation:MinLength=1
+	LVMClusterName string `json:"clusterName"`
+
+	// Disks is a list of disks that will be LVM PVs.
+	// +optional
+	Disks []Disk `json:"disks,omitempty"`
+
+	// VolumeGroupName is the name of the LVM VG.
+	// +kubebuilder:validation:MinLength=1
+	VolumeGroupName string `json:"volumeGroupName"`
+
+	// NodeRef will point to the corresponding Node if it exists.
+	// +optional
+	NodeRef *corev1.ObjectReference `json:"nodeRef,omitempty"`
 }
 
 // LVMNodeStatus defines the observed state of LVMNode
 type LVMNodeStatus struct {
+
 	// The generation observed by the LVMCluster controller.
 	// +optional
 	ObservedGeneration int64 `json:"observedGeneration,omitempty"`

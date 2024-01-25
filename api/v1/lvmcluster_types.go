@@ -21,11 +21,25 @@ import (
 	clusterv1 "sigs.k8s.io/cluster-api/api/v1beta1"
 )
 
+const (
+	// LVMClusterFinalizer is the finalizer used by the cluster controller to
+	// cleanup the cluster resources when a Cluster is being deleted.
+	LVMClusterFinalizer = "lvmcluster.storage.domain"
+)
+
 // LVMClusterSpec defines the desired state of LVMCluster
 type LVMClusterSpec struct {
 	// Paused can be used to prevent controllers from processing the LVMCluster and all its associated objects.
 	// +optional
 	Paused bool `json:"paused,omitempty"`
+
+	// Disks is a list of disks that will be LVM PVs.
+	// +optional
+	Disks []Disk `json:"disks,omitempty"`
+
+	// VolumeGroupName is the name of the LVM VG.
+	// +kubebuilder:validation:MinLength=1
+	VolumeGroupName string `json:"volumeGroupName"`
 }
 
 // LVMClusterStatus defines the observed state of LVMCluster

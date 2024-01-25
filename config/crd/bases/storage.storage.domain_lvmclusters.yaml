@@ -35,10 +35,31 @@ spec:
           spec:
             description: LVMClusterSpec defines the desired state of LVMCluster
             properties:
+              disks:
+                description: Disks is a list of disks that will be LVM PVs.
+                items:
+                  properties:
+                    isPartition:
+                      description: IsPartition indicates whether the disk is a partition.
+                      type: boolean
+                    name:
+                      description: Name is the name of the disk.
+                      minLength: 1
+                      type: string
+                  required:
+                  - name
+                  type: object
+                type: array
               paused:
                 description: Paused can be used to prevent controllers from processing
                   the LVMCluster and all its associated objects.
                 type: boolean
+              volumeGroupName:
+                description: VolumeGroupName is the name of the LVM VG.
+                minLength: 1
+                type: string
+            required:
+            - volumeGroupName
             type: object
           status:
             description: LVMClusterStatus defines the observed state of LVMCluster
